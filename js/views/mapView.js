@@ -1,5 +1,6 @@
-class MapView {
-  _parentElement = document.querySelector("nubi");
+import View from "./View.js";
+class MapView extends View {
+  _parentElement = document.querySelector(".map");
 
   _generateMarkup() {
     return ``;

@@ -575,17 +575,27 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"1GgH0":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _modelJs = require("./model.js");
-const init = function() {
-// Render initial views, if any
+var _resultViewJs = require("./views/resultView.js");
+var _resultViewJsDefault = parcelHelpers.interopDefault(_resultViewJs);
+var _searchViewJs = require("./views/searchView.js");
+var _searchViewJsDefault = parcelHelpers.interopDefault(_searchViewJs);
+const render = function() {
+    (0, _searchViewJsDefault.default).render();
+    (0, _resultViewJsDefault.default).render();
 };
 const controlResult = function() {
     (0, _modelJs.getResult)();
 };
 controlResult();
+const init = function() {
+    // Render initial views
+    render();
+};
 init();
 
-},{"./model.js":"Py0LO"}],"Py0LO":[function(require,module,exports) {
+},{"./model.js":"Py0LO","./views/resultView.js":"12J8R","./views/searchView.js":"jYSxB","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"Py0LO":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "getResult", ()=>getResult);
@@ -630,6 +640,52 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}]},["8BwaG","1GgH0"], "1GgH0", "parcelRequireab18")
+},{}],"12J8R":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _viewJs = require("./View.js");
+var _viewJsDefault = parcelHelpers.interopDefault(_viewJs);
+class ResultView extends (0, _viewJsDefault.default) {
+    _parentElement = document.querySelector(".result");
+    _generateMarkup() {
+        return `
+        <div class="info"><span>ip address</span><span></span></div>
+        <div class="info"><span>location</span><span></span></div>
+        <div class="info"><span>timezone</span><span></span></div>
+        <div class="info"><span>isp</span><span></span></div>
+    `;
+    }
+}
+exports.default = new ResultView();
+
+},{"./View.js":"iS7pi","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iS7pi":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+class View {
+    _data;
+    render() {
+        const markup = this._generateMarkup();
+        this._parentElement.insertAdjacentHTML("beforeend", markup);
+    }
+}
+exports.default = View;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jYSxB":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _viewJs = require("./View.js");
+var _viewJsDefault = parcelHelpers.interopDefault(_viewJs);
+class SearchView extends (0, _viewJsDefault.default) {
+    _parentElement = document.querySelector(".search");
+    _generateMarkup() {
+        return `
+        <input type="text" class="search-input" />
+        <button class="search-btn">></button>
+    `;
+    }
+}
+exports.default = new SearchView();
+
+},{"./View.js":"iS7pi","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["8BwaG","1GgH0"], "1GgH0", "parcelRequireab18")
 
 //# sourceMappingURL=index.850bd9e5.js.map

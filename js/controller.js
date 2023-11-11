@@ -1,7 +1,10 @@
 import { getResult } from "./model.js";
+import resultView from "./views/resultView.js";
+import searchView from "./views/searchView.js";
 
-const init = function () {
-  // Render initial views, if any
+const render = function () {
+  searchView.render();
+  resultView.render();
 };
 
 const controlResult = function () {
@@ -9,4 +12,9 @@ const controlResult = function () {
 };
 
 controlResult();
+
+const init = function () {
+  // Render initial views
+  render();
+};
 init();

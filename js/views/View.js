@@ -1,8 +1,8 @@
-export class View {
+export default class View {
   _data;
 
   render() {
     const markup = this._generateMarkup();
-    this._parentElement.insertAdjecentHTML("beforeend", markup);
+    this._parentElement.insertAdjacentHTML("beforeend", markup);
   }
 }
