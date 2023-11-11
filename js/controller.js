@@ -2,19 +2,20 @@ import { getResult } from "./model.js";
 import resultView from "./views/resultView.js";
 import searchView from "./views/searchView.js";
 
-const render = function () {
+const initRender = function () {
   searchView.render();
   resultView.render();
 };
 
 const controlResult = function () {
-  getResult();
+  const data = getResult();
+  resultView.render(data);
 };
 
 controlResult();
 
 const init = function () {
   // Render initial views
-  render();
+  initRender();
 };
 init();

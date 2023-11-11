@@ -7,7 +7,7 @@ class ResultView extends View {
     return `
          <div class="result-info">
           <span class="result-title">ip address</span
-          ><span class="result-data">1929292</span>
+          ><span class="result-data">${this._data.ip}</span>
         </div>
         <div class="result-info">
           <span class="result-title">location</span

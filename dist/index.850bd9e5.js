@@ -581,17 +581,18 @@ var _resultViewJs = require("./views/resultView.js");
 var _resultViewJsDefault = parcelHelpers.interopDefault(_resultViewJs);
 var _searchViewJs = require("./views/searchView.js");
 var _searchViewJsDefault = parcelHelpers.interopDefault(_searchViewJs);
-const render = function() {
+const initRender = function() {
     (0, _searchViewJsDefault.default).render();
     (0, _resultViewJsDefault.default).render();
 };
 const controlResult = function() {
-    (0, _modelJs.getResult)();
+    const data = (0, _modelJs.getResult)();
+    (0, _resultViewJsDefault.default).render(data);
 };
 controlResult();
 const init = function() {
     // Render initial views
-    render();
+    initRender();
 };
 init();
 
@@ -599,18 +600,32 @@ init();
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "getResult", ()=>getResult);
-const initState = function() {
-    return {
-        result: ""
-    };
+var _configJs = require("./config.js");
+const state = {
+    result: ""
 };
 const getResult = async function() {
     // Call IP address tracker API
-    console.log("Get result");
+    try {
+        const res = await fetch(`${(0, _configJs.API)}/country?apiKey=${(0, _configJs.API_KEY)}&ipAddress=8.8.8.8`);
+        const data = await res.json();
+        if (!res.ok) throw new Error(`${data.message} ${res.status}`);
+        const result = {
+            ip: data.ip,
+            isp: data.isp,
+            location: {
+                region: data.location.region,
+                country: data.location.country,
+                timezone: data.location.timezone
+            }
+        };
+        state.result = result;
+    } catch (err) {
+        alert(err);
+    }
 };
-initState();
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./config.js":"4Wc5b"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -640,7 +655,15 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"12J8R":[function(require,module,exports) {
+},{}],"4Wc5b":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "API", ()=>API);
+parcelHelpers.export(exports, "API_KEY", ()=>API_KEY);
+const API = "https://geo.ipify.org/api/v2";
+const API_KEY = "at_UuKNHwGdt0xMbcMxQ1Oxia9pBP1Xb";
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"12J8R":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _viewJs = require("./View.js");
@@ -651,7 +674,7 @@ class ResultView extends (0, _viewJsDefault.default) {
         return `
          <div class="result-info">
           <span class="result-title">ip address</span
-          ><span class="result-data">1929292</span>
+          ><span class="result-data">${this._data.ip}</span>
         </div>
         <div class="result-info">
           <span class="result-title">location</span
@@ -675,7 +698,8 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 class View {
     _data;
-    render() {
+    render(data) {
+        this._data = data;
         const markup = this._generateMarkup();
         this._parentElement.insertAdjacentHTML("beforeend", markup);
     }
