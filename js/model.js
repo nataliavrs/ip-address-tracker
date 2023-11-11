@@ -4,4 +4,9 @@ const initState = function () {
   };
 };
 
+export const getResult = async function () {
+  // Call IP address tracker API
+  console.log("Get result");
+};
+
 initState();
