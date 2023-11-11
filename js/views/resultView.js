@@ -5,10 +5,22 @@ class ResultView extends View {
 
   _generateMarkup() {
     return `
-        <div class="info"><span>ip address</span><span></span></div>
-        <div class="info"><span>location</span><span></span></div>
-        <div class="info"><span>timezone</span><span></span></div>
-        <div class="info"><span>isp</span><span></span></div>
+         <div class="result-info">
+          <span class="result-title">ip address</span
+          ><span class="result-data">1929292</span>
+        </div>
+        <div class="result-info">
+          <span class="result-title">location</span
+          ><span class="result-data">brooklyn</span>
+        </div>
+        <div class="result-info">
+          <span class="result-title">timezone</span
+          ><span class="result-data">utc-05:00</span>
+        </div>
+        <div class="result-info">
+          <span class="result-title">isp</span
+          ><span class="result-data">spacex starlink</span>
+        </div>
     `;
   }
 }

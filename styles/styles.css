@@ -1,0 +1,27 @@
+body {
+  font-family: "Poppins", "Courier New", Courier, monospace;
+}
+
+* {
+  text-align: center;
+}
+
+.container {
+  display: inline-block;
+  margin: auto;
+}
+
+.result {
+  display: flex;
+  align-items: center;
+}
+
+.result-info {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.result-title {
+  margin: 1rem;
+}

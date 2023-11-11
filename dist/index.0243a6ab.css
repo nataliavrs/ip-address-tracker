@@ -1,0 +1,29 @@
+body {
+  font-family: Poppins, Courier New, Courier, monospace;
+}
+
+* {
+  text-align: center;
+}
+
+.container {
+  margin: auto;
+  display: inline-block;
+}
+
+.result {
+  align-items: center;
+  display: flex;
+}
+
+.result-info {
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+}
+
+.result-title {
+  margin: 1rem;
+}
+
+/*# sourceMappingURL=index.0243a6ab.css.map */
