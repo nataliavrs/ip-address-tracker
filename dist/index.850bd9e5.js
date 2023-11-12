@@ -583,10 +583,11 @@ var _searchViewJs = require("./views/searchView.js");
 var _searchViewJsDefault = parcelHelpers.interopDefault(_searchViewJs);
 const initRender = function() {
     (0, _searchViewJsDefault.default).render();
-    (0, _resultViewJsDefault.default).render();
+// resultView.render();
 };
-const controlResult = function() {
-    const data = (0, _modelJs.getResult)();
+const controlResult = async function() {
+    const data = await (0, _modelJs.getResult)();
+    console.log(data);
     (0, _resultViewJsDefault.default).render(data);
 };
 controlResult();
@@ -599,6 +600,7 @@ init();
 },{"./model.js":"Py0LO","./views/resultView.js":"12J8R","./views/searchView.js":"jYSxB","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"Py0LO":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "state", ()=>state);
 parcelHelpers.export(exports, "getResult", ()=>getResult);
 var _configJs = require("./config.js");
 const state = {
@@ -619,13 +621,22 @@ const getResult = async function() {
                 timezone: data.location.timezone
             }
         };
-        state.result = result;
+        // state.result = result;
+        return result;
     } catch (err) {
         alert(err);
     }
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./config.js":"4Wc5b"}],"gkKU3":[function(require,module,exports) {
+},{"./config.js":"4Wc5b","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4Wc5b":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "API", ()=>API);
+parcelHelpers.export(exports, "API_KEY", ()=>API_KEY);
+const API = "https://geo.ipify.org/api/v2";
+const API_KEY = "at_UuKNHwGdt0xMbcMxQ1Oxia9pBP1Xb";
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -655,15 +666,7 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"4Wc5b":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "API", ()=>API);
-parcelHelpers.export(exports, "API_KEY", ()=>API_KEY);
-const API = "https://geo.ipify.org/api/v2";
-const API_KEY = "at_UuKNHwGdt0xMbcMxQ1Oxia9pBP1Xb";
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"12J8R":[function(require,module,exports) {
+},{}],"12J8R":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _viewJs = require("./View.js");
@@ -674,19 +677,19 @@ class ResultView extends (0, _viewJsDefault.default) {
         return `
          <div class="result-info">
           <span class="result-title">ip address</span
-          ><span class="result-data">${this._data.ip}</span>
+          ><span class="result-data">${this._data?.ip}</span>
         </div>
         <div class="result-info">
-          <span class="result-title">location</span
-          ><span class="result-data">brooklyn</span>
+          <span class="result-title">Location</span
+          ><span class="result-data">${this._data?.location?.region}</span>
         </div>
         <div class="result-info">
           <span class="result-title">timezone</span
-          ><span class="result-data">utc-05:00</span>
+          ><span class="result-data">UTC ${this._data?.location?.timezone}</span>
         </div>
         <div class="result-info">
-          <span class="result-title">isp</span
-          ><span class="result-data">spacex starlink</span>
+          <span class="result-title">ISP</span
+          ><span class="result-data">${this._data?.isp}</span>
         </div>
     `;
     }

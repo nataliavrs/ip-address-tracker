@@ -1,6 +1,6 @@
 import { API, API_KEY } from "./config.js";
 
-const state = {
+export const state = {
   result: "",
 };
 
@@ -25,7 +25,8 @@ export const getResult = async function () {
         timezone: data.location.timezone,
       },
     };
-    state.result = result;
+    // state.result = result;
+    return result;
   } catch (err) {
     alert(err);
   }
