@@ -585,10 +585,12 @@ const initRender = function() {
     (0, _searchViewJsDefault.default).render();
 // resultView.render();
 };
-const controlResult = async function() {
-    const data = await (0, _modelJs.getResult)();
-    console.log(data);
-    (0, _resultViewJsDefault.default).render(data);
+const controlResult = function() {
+    (0, _modelJs.getResult)("8.8.8.8")// getResult("erorororr")
+    .then((res)=>{
+        console.log(res);
+        (0, _resultViewJsDefault.default).render(res);
+    }).catch((err)=>alert(err));
 };
 controlResult();
 const init = function() {
@@ -604,27 +606,31 @@ parcelHelpers.export(exports, "state", ()=>state);
 parcelHelpers.export(exports, "getResult", ()=>getResult);
 var _configJs = require("./config.js");
 const state = {
-    result: ""
+    ip: ""
 };
-const getResult = async function() {
-    // Call IP address tracker API
+const getResult = async function(searchIp) {
     try {
-        const res = await fetch(`${(0, _configJs.API)}/country?apiKey=${(0, _configJs.API_KEY)}&ipAddress=8.8.8.8`);
-        const data = await res.json();
-        if (!res.ok) throw new Error(`${data.message} ${res.status}`);
-        const result = {
-            ip: data.ip,
-            isp: data.isp,
+        if (!searchIp) throw new Error("No IP provided.");
+        const res = await fetch(`${(0, _configJs.API)}/country?apiKey=${(0, _configJs.API_KEY)}&ipAddress=${searchIp}`);
+        if (!res.ok) {
+            if (res.status === 422) {
+                const errorData = await res.json();
+                throw new Error(errorData.messages);
+            } else throw new Error(`${res.statusText} ${res.status}`);
+        }
+        const ip = await res.json();
+        const mappedIp = {
+            ip: ip.ip,
+            isp: ip.isp,
             location: {
-                region: data.location.region,
-                country: data.location.country,
-                timezone: data.location.timezone
+                region: ip.location.region,
+                country: ip.location.country,
+                timezone: ip.location.timezone
             }
         };
-        // state.result = result;
-        return result;
+        return mappedIp;
     } catch (err) {
-        alert(err);
+        throw err;
     }
 };
 

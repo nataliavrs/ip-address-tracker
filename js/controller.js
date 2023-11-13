@@ -1,4 +1,4 @@
-import { getResult, state } from "./model.js";
+import { getResult } from "./model.js";
 import resultView from "./views/resultView.js";
 import searchView from "./views/searchView.js";
 
@@ -7,10 +7,14 @@ const initRender = function () {
   // resultView.render();
 };
 
-const controlResult = async function () {
-  const data = await getResult();
-  console.log(data);
-  resultView.render(data);
+const controlResult = function () {
+  getResult("8.8.8.8")
+    // getResult("erorororr")
+    .then((res) => {
+      console.log(res);
+      resultView.render(res);
+    })
+    .catch((err) => alert(err));
 };
 
 controlResult();
