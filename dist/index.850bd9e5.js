@@ -581,21 +581,14 @@ var _resultViewJs = require("./views/resultView.js");
 var _resultViewJsDefault = parcelHelpers.interopDefault(_resultViewJs);
 var _searchViewJs = require("./views/searchView.js");
 var _searchViewJsDefault = parcelHelpers.interopDefault(_searchViewJs);
-const initRender = function() {
-    (0, _searchViewJsDefault.default).render();
-// resultView.render();
-};
-const controlResult = function() {
-    (0, _modelJs.getResult)("8.8.8.8")// getResult("erorororr")
-    .then((res)=>{
-        console.log(res);
+const controlsSearchResults = function(searchQuery) {
+    (0, _modelJs.getResult)(searchQuery).then((res)=>{
         (0, _resultViewJsDefault.default).render(res);
     }).catch((err)=>alert(err));
 };
-controlResult();
 const init = function() {
-    // Render initial views
-    initRender();
+    (0, _searchViewJsDefault.default).addHandlerSearch(controlsSearchResults);
+    (0, _searchViewJsDefault.default).addHandlerSearchMock(controlsSearchResults);
 };
 init();
 
@@ -722,11 +715,23 @@ var _viewJs = require("./View.js");
 var _viewJsDefault = parcelHelpers.interopDefault(_viewJs);
 class SearchView extends (0, _viewJsDefault.default) {
     _parentElement = document.querySelector(".search");
-    _generateMarkup() {
-        return `
-        <input type="text" class="search-input" />
-        <button class="search-btn">></button>
-    `;
+    _getQuery() {
+        return this._parentElement.querySelector(".search-input").value;
+    }
+    _clearInput() {
+        this._parentElement.querySelector(".search-input").value = "";
+    }
+    addHandlerSearch(handler) {
+        this._parentElement.addEventListener("submit", (e)=>{
+            e.preventDefault();
+            handler(this._getQuery());
+            this._clearInput();
+        });
+    }
+    addHandlerSearchMock(handler) {
+        document.querySelector(".mock").addEventListener("click", function() {
+            handler("176.201.53.78");
+        });
     }
 }
 exports.default = new SearchView();

@@ -2,25 +2,16 @@ import { getResult } from "./model.js";
 import resultView from "./views/resultView.js";
 import searchView from "./views/searchView.js";
 
-const initRender = function () {
-  searchView.render();
-  // resultView.render();
-};
-
-const controlResult = function () {
-  getResult("8.8.8.8")
-    // getResult("erorororr")
+const controlsSearchResults = function (searchQuery) {
+  getResult(searchQuery)
     .then((res) => {
-      console.log(res);
       resultView.render(res);
     })
     .catch((err) => alert(err));
 };
 
-controlResult();
-
 const init = function () {
-  // Render initial views
-  initRender();
+  searchView.addHandlerSearch(controlsSearchResults);
+  searchView.addHandlerSearchMock(controlsSearchResults);
 };
 init();
