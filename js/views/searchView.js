@@ -21,7 +21,7 @@ class SearchView extends View {
 
   addHandlerSearchMock(handler) {
     document.querySelector(".mock").addEventListener("click", function () {
-      handler("176.201.53.78");
+      handler("");
     });
   }
 }

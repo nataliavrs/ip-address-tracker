@@ -581,14 +581,20 @@ var _resultViewJs = require("./views/resultView.js");
 var _resultViewJsDefault = parcelHelpers.interopDefault(_resultViewJs);
 var _searchViewJs = require("./views/searchView.js");
 var _searchViewJsDefault = parcelHelpers.interopDefault(_searchViewJs);
-const controlsSearchResults = function(searchQuery) {
-    (0, _modelJs.getResult)(searchQuery).then((res)=>{
-        (0, _resultViewJsDefault.default).render(res);
-    }).catch((err)=>alert(err));
+const controlPageLoad = function() {
+    (0, _modelJs.getResult)("").then((res)=>(0, _resultViewJsDefault.default).render(res)).catch((err)=>alert(err));
+};
+const controlSearchResults = async function(searchQuery) {
+    try {
+        const res = await (0, _modelJs.getResult)(searchQuery);
+        (0, _resultViewJsDefault.default).update(res);
+    } catch (err) {
+        alert(err);
+    }
 };
 const init = function() {
-    (0, _searchViewJsDefault.default).addHandlerSearch(controlsSearchResults);
-    (0, _searchViewJsDefault.default).addHandlerSearchMock(controlsSearchResults);
+    controlPageLoad();
+    (0, _searchViewJsDefault.default).addHandlerSearch(controlSearchResults);
 };
 init();
 
@@ -603,7 +609,8 @@ const state = {
 };
 const getResult = async function(searchIp) {
     try {
-        if (!searchIp) throw new Error("No IP provided.");
+        // if (!searchIp) throw new Error("No IP provided.");
+        // If the parameter is not specified, then it defaults to client request's public IP address.
         const res = await fetch(`${(0, _configJs.API)}/country?apiKey=${(0, _configJs.API_KEY)}&ipAddress=${searchIp}`);
         if (!res.ok) {
             if (res.status === 422) {
@@ -674,16 +681,16 @@ class ResultView extends (0, _viewJsDefault.default) {
     _parentElement = document.querySelector(".result");
     _generateMarkup() {
         return `
-         <div class="result-info">
-          <span class="result-title">ip address</span
+        <div class="result-info">
+          <span class="result-title">IP ADDRESS</span
           ><span class="result-data">${this._data?.ip}</span>
         </div>
         <div class="result-info">
-          <span class="result-title">Location</span
+          <span class="result-title">LOCATION</span
           ><span class="result-data">${this._data?.location?.region}</span>
         </div>
         <div class="result-info">
-          <span class="result-title">timezone</span
+          <span class="result-title">TIMEZONE</span
           ><span class="result-data">UTC ${this._data?.location?.timezone}</span>
         </div>
         <div class="result-info">
@@ -703,7 +710,23 @@ class View {
     render(data) {
         this._data = data;
         const markup = this._generateMarkup();
-        this._parentElement.insertAdjacentHTML("beforeend", markup);
+        this._parentElement.innerHTML = markup;
+    }
+    updateSimple(data) {
+        this._data = data;
+        const newMarkup = this._generateMarkup();
+        this._parentElement.innerHTML = newMarkup;
+    }
+    update(data) {
+        this._data = data;
+        const newMarkup = this._generateMarkup();
+        const newDOM = document.createRange().createContextualFragment(newMarkup);
+        const newDOMArray = Array.from(newDOM.querySelectorAll("*"));
+        const oldDOMArray = Array.from(this._parentElement.querySelectorAll("*"));
+        newDOMArray.forEach((newNode, index)=>{
+            const oldNode = oldDOMArray[index];
+            if (!newNode.isEqualNode(oldNode) && newNode.firstChild?.nodeValue.trim() !== "") oldNode.textContent = newNode.textContent;
+        });
     }
 }
 exports.default = View;
@@ -730,7 +753,7 @@ class SearchView extends (0, _viewJsDefault.default) {
     }
     addHandlerSearchMock(handler) {
         document.querySelector(".mock").addEventListener("click", function() {
-            handler("176.201.53.78");
+            handler("");
         });
     }
 }

@@ -5,7 +5,9 @@ node_modules/
 .config.js
 
 # DIST 
-dist/
+dist/*
+
+.parcel-cache/
 
 # Avoid accidental Sketch file upload 
 ###############################################

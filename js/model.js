@@ -6,8 +6,9 @@ export const state = {
 
 export const getResult = async function (searchIp) {
   try {
-    if (!searchIp) throw new Error("No IP provided.");
+    // if (!searchIp) throw new Error("No IP provided.");
 
+    // If the parameter is not specified, then it defaults to client request's public IP address.
     const res = await fetch(
       `${API}/country?apiKey=${API_KEY}&ipAddress=${searchIp}`
     );
