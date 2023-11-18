@@ -7,19 +7,19 @@ class ResultView extends View {
     return `
         <div class="result-info">
           <span class="result-title">IP ADDRESS</span
-          ><span class="result-data">${this._data?.ip}</span>
+          ><span class="result-data">${this._data?.ip || "---"}</span>
         </div>
         <div class="result-info">
-          <span class="result-title">LOCATION</span
-          ><span class="result-data">${this._data?.location?.region}</span>
+          <span class="result-title">LOCATION</span>                           
+          <span class="result-data">${this._data?.fullLocation || "---"}</span>
         </div>
         <div class="result-info">
           <span class="result-title">TIMEZONE</span
-          ><span class="result-data">UTC ${this._data?.location?.timezone}</span>
+          ><span class="result-data">UTC ${this._data?.timezone || "---"}</span>
         </div>
         <div class="result-info">
           <span class="result-title">ISP</span
-          ><span class="result-data">${this._data?.isp}</span>
+          ><span class="result-data">${this._data?.isp || "---"}</span>
         </div>
     `;
   }

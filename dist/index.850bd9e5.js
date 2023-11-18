@@ -609,9 +609,8 @@ const state = {
 };
 const getResult = async function(searchIp) {
     try {
-        // if (!searchIp) throw new Error("No IP provided.");
         // If the parameter is not specified, then it defaults to client request's public IP address.
-        const res = await fetch(`${(0, _configJs.API)}/country?apiKey=${(0, _configJs.API_KEY)}&ipAddress=${searchIp}`);
+        const res = await fetch(`${(0, _configJs.API)}/country,city?apiKey=${(0, _configJs.API_KEY)}&ipAddress=${searchIp}`);
         if (!res.ok) {
             if (res.status === 422) {
                 const errorData = await res.json();
@@ -622,16 +621,44 @@ const getResult = async function(searchIp) {
         const mappedIp = {
             ip: ip.ip,
             isp: ip.isp,
-            location: {
+            fullLocation: getFullLocation({
+                city: ip.location.city,
                 region: ip.location.region,
                 country: ip.location.country,
-                timezone: ip.location.timezone
-            }
+                postalcode: ip.location.postalcode
+            }),
+            timezone: ip.location.timezone
         };
         return mappedIp;
     } catch (err) {
         throw err;
     }
+};
+const getFullLocation = function(location) {
+    const values = Object.values(location).filter((val)=>val);
+    const fullLocation = values.length ? values.join(", ") : null;
+    return fullLocation;
+};
+const getFullLocationv2 = function(location) {
+    const values = Object.values(location).filter((val)=>val);
+    const fullLocation = values.length ? values.map((val, i, arr)=>i !== arr.length - 1 ? val + ", " : val).reduce((cur, acc)=>cur + acc) : null;
+    return fullLocation;
+};
+const getFullLocationv1 = function(location) {
+    const valuedProperties = Object.values(location).filter((val)=>val);
+    if (valuedProperties.length) {
+        if (valuedProperties.length > 1) {
+            const fullLocation = valuedProperties.map((val)=>val + ", ");
+            const fullLocationWithoutLast = fullLocation.splice(0, fullLocation.length - 1);
+            const lastElement = fullLocation[fullLocation.length - 1].trim().slice(0, -1);
+            const formattedValues = [
+                ...fullLocationWithoutLast,
+                lastElement
+            ];
+            const locationString = formattedValues.reduce((cur, acc)=>cur + acc);
+            return `${locationString}`;
+        } else return valuedProperties.find((val)=>val);
+    } else return null;
 };
 
 },{"./config.js":"4Wc5b","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4Wc5b":[function(require,module,exports) {
@@ -683,19 +710,19 @@ class ResultView extends (0, _viewJsDefault.default) {
         return `
         <div class="result-info">
           <span class="result-title">IP ADDRESS</span
-          ><span class="result-data">${this._data?.ip}</span>
+          ><span class="result-data">${this._data?.ip || "---"}</span>
         </div>
         <div class="result-info">
-          <span class="result-title">LOCATION</span
-          ><span class="result-data">${this._data?.location?.region}</span>
+          <span class="result-title">LOCATION</span>                           
+          <span class="result-data">${this._data?.fullLocation || "---"}</span>
         </div>
         <div class="result-info">
           <span class="result-title">TIMEZONE</span
-          ><span class="result-data">UTC ${this._data?.location?.timezone}</span>
+          ><span class="result-data">UTC ${this._data?.timezone || "---"}</span>
         </div>
         <div class="result-info">
           <span class="result-title">ISP</span
-          ><span class="result-data">${this._data?.isp}</span>
+          ><span class="result-data">${this._data?.isp || "---"}</span>
         </div>
     `;
     }

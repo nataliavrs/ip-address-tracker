@@ -6,11 +6,9 @@ export const state = {
 
 export const getResult = async function (searchIp) {
   try {
-    // if (!searchIp) throw new Error("No IP provided.");
-
     // If the parameter is not specified, then it defaults to client request's public IP address.
     const res = await fetch(
-      `${API}/country?apiKey=${API_KEY}&ipAddress=${searchIp}`
+      `${API}/country,city?apiKey=${API_KEY}&ipAddress=${searchIp}`
     );
 
     if (!res.ok) {
@@ -26,14 +24,55 @@ export const getResult = async function (searchIp) {
     const mappedIp = {
       ip: ip.ip,
       isp: ip.isp,
-      location: {
+      fullLocation: getFullLocation({
+        city: ip.location.city,
         region: ip.location.region,
         country: ip.location.country,
-        timezone: ip.location.timezone,
-      },
+        postalcode: ip.location.postalcode,
+      }),
+      timezone: ip.location.timezone,
     };
     return mappedIp;
   } catch (err) {
     throw err;
+  }
+};
+
+const getFullLocation = function (location) {
+  const values = Object.values(location).filter((val) => val);
+  const fullLocation = values.length ? values.join(", ") : null;
+  return fullLocation;
+};
+
+const getFullLocationv2 = function (location) {
+  const values = Object.values(location).filter((val) => val);
+  const fullLocation = values.length
+    ? values
+        .map((val, i, arr) => (i !== arr.length - 1 ? val + ", " : val))
+        .reduce((cur, acc) => cur + acc)
+    : null;
+  return fullLocation;
+};
+
+const getFullLocationv1 = function (location) {
+  const valuedProperties = Object.values(location).filter((val) => val);
+  if (valuedProperties.length) {
+    if (valuedProperties.length > 1) {
+      const fullLocation = valuedProperties.map((val) => val + ", ");
+      const fullLocationWithoutLast = fullLocation.splice(
+        0,
+        fullLocation.length - 1
+      );
+      const lastElement = fullLocation[fullLocation.length - 1]
+        .trim()
+        .slice(0, -1);
+      const formattedValues = [...fullLocationWithoutLast, lastElement];
+      const locationString = formattedValues.reduce((cur, acc) => cur + acc);
+      return `${locationString}`;
+    } else {
+      return valuedProperties.find((val) => val);
+    }
+  } else {
+    return null;
   }
 };
