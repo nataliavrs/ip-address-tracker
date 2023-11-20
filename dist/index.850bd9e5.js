@@ -781,16 +781,32 @@ class SearchView extends (0, _viewJsDefault.default) {
     _clearInput() {
         this._parentElement.querySelector(".search-input").value = "";
     }
+    _validationError(errType) {
+        switch(errType){
+            case 1:
+                alert(`You didn't insert any value`);
+                break;
+            case 2:
+                alert(`Insert a valid IP address. No letters.`);
+                break;
+            default:
+                alert(`Insert a valid IP address. No letters.`);
+                break;
+        }
+    }
     addHandlerSearch(handler) {
         this._parentElement.addEventListener("submit", (e)=>{
             e.preventDefault();
-            handler(this._getQuery());
+            const searchQuery = this._getQuery();
+            const onlyNumbersRegex = /^[0-9]+$/;
+            if (searchQuery === "") {
+                const validationError = 1;
+                this._validationError(validationError);
+            } else if (!onlyNumbersRegex.test(searchQuery)) {
+                const validationError = 2;
+                this._validationError(validationError);
+            } else handler(this._getQuery());
             this._clearInput();
-        });
-    }
-    addHandlerSearchMock(handler) {
-        document.querySelector(".mock").addEventListener("click", function() {
-            handler("");
         });
     }
 }
