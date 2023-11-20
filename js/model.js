@@ -1,11 +1,13 @@
 import { API, API_KEY } from "./config.js";
 
 export const state = {
-  ip: "",
+  searchedIp: "",
 };
 
 export const getResult = async function (searchIp) {
   try {
+    if (state.searchedIp.ip === searchIp) return state.searchedIp;
+
     // If the parameter is not specified, then it defaults to client request's public IP address.
     const res = await fetch(
       `${API}/country,city?apiKey=${API_KEY}&ipAddress=${searchIp}`
@@ -32,6 +34,8 @@ export const getResult = async function (searchIp) {
       }),
       timezone: ip.location.timezone,
     };
+    state.searchedIp = mappedIp;
+    console.log(state);
     return mappedIp;
   } catch (err) {
     throw err;

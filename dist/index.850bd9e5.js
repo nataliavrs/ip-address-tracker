@@ -605,10 +605,11 @@ parcelHelpers.export(exports, "state", ()=>state);
 parcelHelpers.export(exports, "getResult", ()=>getResult);
 var _configJs = require("./config.js");
 const state = {
-    ip: ""
+    searchedIp: ""
 };
 const getResult = async function(searchIp) {
     try {
+        if (state.searchedIp.ip === searchIp) return state.searchedIp;
         // If the parameter is not specified, then it defaults to client request's public IP address.
         const res = await fetch(`${(0, _configJs.API)}/country,city?apiKey=${(0, _configJs.API_KEY)}&ipAddress=${searchIp}`);
         if (!res.ok) {
@@ -629,6 +630,8 @@ const getResult = async function(searchIp) {
             }),
             timezone: ip.location.timezone
         };
+        state.searchedIp = mappedIp;
+        console.log(state);
         return mappedIp;
     } catch (err) {
         throw err;
@@ -745,6 +748,7 @@ class View {
         this._parentElement.innerHTML = newMarkup;
     }
     update(data) {
+        if (this._data === data) return;
         this._data = data;
         const newMarkup = this._generateMarkup();
         const newDOM = document.createRange().createContextualFragment(newMarkup);
