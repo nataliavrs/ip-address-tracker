@@ -31,4 +31,9 @@ export default class View {
       }
     });
   }
+
+  loadSpinner() {
+    const spinner = `<div class="spinner"></div>`;
+    this._parentElement.innerHTML = spinner;
+  }
 }

@@ -582,12 +582,14 @@ var _resultViewJsDefault = parcelHelpers.interopDefault(_resultViewJs);
 var _searchViewJs = require("./views/searchView.js");
 var _searchViewJsDefault = parcelHelpers.interopDefault(_searchViewJs);
 const controlPageLoad = function() {
+    (0, _resultViewJsDefault.default).loadSpinner();
     (0, _modelJs.getResult)("").then((res)=>(0, _resultViewJsDefault.default).render(res)).catch((err)=>alert(err));
 };
 const controlSearchResults = async function(searchQuery) {
     try {
+        (0, _resultViewJsDefault.default).loadSpinner();
         const res = await (0, _modelJs.getResult)(searchQuery);
-        (0, _resultViewJsDefault.default).update(res);
+        (0, _resultViewJsDefault.default).render(res);
     } catch (err) {
         alert(err);
     }
@@ -758,6 +760,10 @@ class View {
             const oldNode = oldDOMArray[index];
             if (!newNode.isEqualNode(oldNode) && newNode.firstChild?.nodeValue.trim() !== "") oldNode.textContent = newNode.textContent;
         });
+    }
+    loadSpinner() {
+        const spinner = `<div class="spinner"></div>`;
+        this._parentElement.innerHTML = spinner;
     }
 }
 exports.default = View;
