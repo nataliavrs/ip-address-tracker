@@ -17,12 +17,17 @@ class SearchView extends View {
         alert(`You didn't insert any value`);
         break;
       case 2:
-        alert(`Insert a valid IP address. No letters.`);
+        alert(`Insert a valid IP address.`);
         break;
-      default:
-        alert(`Insert a valid IP address. No letters.`);
-        break;
+      // default:
+      //   alert(`Insert a valid IP address. No letters.`);
+      //   break;
     }
+  }
+
+  _validateForm(formEl) {
+    const form = new FormData(formEl);
+    console.log(form);
   }
 
   addHandlerSearch(handler) {
@@ -30,12 +35,17 @@ class SearchView extends View {
       e.preventDefault();
       const searchQuery = this._getQuery();
 
-      const onlyNumbersRegex = /^[0-9]+$/;
+      this._validateForm(e.target);
+
+      const IPv4 =
+        /^(25[0-5]|2[0-4][0-9]|[0-1]?[0-9]?[0-9])(\.(25[0-5]|2[0-4][0-9]|[0-1]?[0-9]?[0-9])){3}$/;
+      const IPv6 =
+        /^([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}$|^([0-9a-fA-F]{1,4}:){1,7}:$|^([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}$|^([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}$|^([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}$|^([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}$|^([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}$|^[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})$/;
 
       if (searchQuery === "") {
         const validationError = 1;
         this._validationError(validationError);
-      } else if (!onlyNumbersRegex.test(searchQuery)) {
+      } else if (!IPv4.test(searchQuery) && !IPv6.test(searchQuery)) {
         const validationError = 2;
         this._validationError(validationError);
       } else {
