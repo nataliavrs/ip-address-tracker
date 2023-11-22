@@ -595,7 +595,7 @@ const controlSearchResults = async function(searchQuery) {
     }
 };
 const init = function() {
-    controlPageLoad();
+    // controlPageLoad();
     (0, _searchViewJsDefault.default).addHandlerSearch(controlSearchResults);
 };
 init();
@@ -672,7 +672,7 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "API", ()=>API);
 parcelHelpers.export(exports, "API_KEY", ()=>API_KEY);
 const API = "https://geo.ipify.org/api/v2";
-const API_KEY = "at_UuKNHwGdt0xMbcMxQ1Oxia9pBP1Xb";
+const API_KEY = "at_c7ALR6fL8yZseyKsi1wXR6eYhz5se";
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
@@ -773,48 +773,74 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _viewJs = require("./View.js");
 var _viewJsDefault = parcelHelpers.interopDefault(_viewJs);
+var _ = require("../helpers.js/");
 class SearchView extends (0, _viewJsDefault.default) {
     _parentElement = document.querySelector(".search");
+    _isFormValid = false;
     _getQuery() {
         return this._parentElement.querySelector(".search-input").value;
     }
-    _clearInput() {
-        this._parentElement.querySelector(".search-input").value = "";
-    }
-    _validationError(errType) {
-        switch(errType){
-            case 1:
-                alert(`You didn't insert any value`);
-                break;
-            case 2:
-                alert(`Insert a valid IP address.`);
-                break;
-        }
+    _clearForm() {
+        const form = this._parentElement.querySelector(`.search-form`);
+        form.querySelectorAll("input").forEach((input)=>input.value = "");
     }
     _validateForm(formEl) {
-        const form = new FormData(formEl);
-        console.log(form);
+        const form = new FormData(formEl).entries();
+        this._isFormValid = [
+            ...form
+        ].map(([key, value])=>{
+            if (this.VALIDATE_FORM_MAP[key].validation(value)) {
+                this._clearFieldError(key);
+                return true;
+            } else {
+                const errMsg = this.VALIDATE_FORM_MAP[key].message;
+                this._showFieldError(key, errMsg);
+            }
+        }).every((valid)=>valid);
     }
+    _showFieldError(key, errMsg) {
+        const field = this._parentElement.querySelector(`input[name="${key}"]`);
+        const form = this._parentElement.querySelector(`.search-form`);
+        if (!form.querySelector(`.error-${key}`)) field.insertAdjacentHTML("afterEnd", `<span class="error-${key}">${errMsg}</span>`);
+    }
+    _clearFieldError(key) {
+        const form = this._parentElement.querySelector(`.search-form`);
+        const error = this._parentElement.querySelector(`.error-${key}`);
+        console.log(error);
+        if (error) form.removeChild(error);
+        else return;
+    }
+    VALIDATE_FORM_MAP = {
+        ip: {
+            validation: (value)=>(0, _.IPv4Regex).test(value) || (0, _.IPv6Regex).test(value),
+            message: "Invalid IP address"
+        },
+        nubi: {
+            validation: (value)=>value !== "nubi" && value !== "",
+            message: "Nubi"
+        }
+    };
     addHandlerSearch(handler) {
         this._parentElement.addEventListener("submit", (e)=>{
             e.preventDefault();
-            const searchQuery = this._getQuery();
             this._validateForm(e.target);
-            const IPv4 = /^(25[0-5]|2[0-4][0-9]|[0-1]?[0-9]?[0-9])(\.(25[0-5]|2[0-4][0-9]|[0-1]?[0-9]?[0-9])){3}$/;
-            const IPv6 = /^([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}$|^([0-9a-fA-F]{1,4}:){1,7}:$|^([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}$|^([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}$|^([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}$|^([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}$|^([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}$|^[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})$/;
-            if (searchQuery === "") {
-                const validationError = 1;
-                this._validationError(validationError);
-            } else if (!IPv4.test(searchQuery) && !IPv6.test(searchQuery)) {
-                const validationError = 2;
-                this._validationError(validationError);
-            } else handler(this._getQuery());
-            this._clearInput();
+            if (this._isFormValid) {
+                this._clearForm();
+                handler(this._getQuery());
+            }
         });
     }
 }
 exports.default = new SearchView();
 
-},{"./View.js":"iS7pi","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["8BwaG","1GgH0"], "1GgH0", "parcelRequireab18")
+},{"./View.js":"iS7pi","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../helpers.js/":"6s1be"}],"6s1be":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "IPv4Regex", ()=>IPv4Regex);
+parcelHelpers.export(exports, "IPv6Regex", ()=>IPv6Regex);
+const IPv4Regex = /^(25[0-5]|2[0-4][0-9]|[0-1]?[0-9]?[0-9])(\.(25[0-5]|2[0-4][0-9]|[0-1]?[0-9]?[0-9])){3}$/;
+const IPv6Regex = /^([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}$|^([0-9a-fA-F]{1,4}:){1,7}:$|^([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}$|^([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}$|^([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}$|^([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}$|^([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}$|^[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})$/;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["8BwaG","1GgH0"], "1GgH0", "parcelRequireab18")
 
 //# sourceMappingURL=index.850bd9e5.js.map

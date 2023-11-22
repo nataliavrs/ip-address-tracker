@@ -20,7 +20,7 @@ const controlSearchResults = async function (searchQuery) {
 };
 
 const init = function () {
-  controlPageLoad();
+  // controlPageLoad();
   searchView.addHandlerSearch(controlSearchResults);
 };
 init();

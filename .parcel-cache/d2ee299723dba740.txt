@@ -1,4 +1,4 @@
-5878
+5879
 146C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\@parcel\optimizer-svgo\node_modules\css-select\package.json133440432012439518 0
 135C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\@parcel\runtime-js\src\helpers\get-worker-url.js133440432013395450 0
 96C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\commander133440432010758581 1
@@ -18,7 +18,7 @@
 124C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\@parcel\utils\test\DefaultMap.test.js133440432013159343 0
 104C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\svgo\lib\style.js133440432013395450 0
 122C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\caniuse-lite\data\regions\alt-af.js133440432013114725 0
-84C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\.gitignore133440433122992940 0
+84C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\.gitignore133445557460217648 0
 108C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\mdn-data\package.json133440432012476043 0
 113C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\nth-check\lib\parse.js.map133440432013693394 0
 148C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\@parcel\optimizer-svgo\node_modules\csso\lib\replace\property133440432015701955 1
@@ -46,7 +46,7 @@
 120C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\@parcel\fs\test\OverlayFS.test.js133440432011814071 0
 117C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\htmlparser2\lib\FeedHandler.js133440432006722692 0
 80C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\design133437964078711667 1
-78C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\dist133443609960038272 1
+78C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\dist133451458347235680 1
 98C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\.bin\parcel133440432041053035 0
 105C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\msgpackr\struct.js133440432014130457 0
 119C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\css-select\lib\esm\attributes.js133440432010139624 0
@@ -61,7 +61,7 @@
 125C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\@swc\helpers\src\_set_prototype_of.mjs133440432031970891 0
 102C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\semver\index.js133440432013620272 0
 92C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\@lmdb133440432177624522 1
-84C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\index.html133441822846869503 0
+84C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\index.html133450825506498529 0
 113C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\@parcel\core\lib\Parcel.js133440432022037465 0
 104C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\error-ex\index.js133440432006472664 0
 115C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\semver\classes\comparator.js133440432009590082 0
@@ -142,7 +142,7 @@
 152C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\@parcel\optimizer-htmlnano\node_modules\svgo\dist\svgo.browser.js133440432020162564 0
 114C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\css-tree\cjs\utils\List.cjs133440432019765846 0
 107C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\electron-to-chromium133440432012646529 1
-91C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\styles\styles.css133441823551781058 0
+91C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\styles\styles.css133449810758036274 0
 118C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\caniuse-lite\data\regions\BT.js133440432020403433 0
 134C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\posthtml\node_modules\posthtml-parser\readme.md133440432009512397 0
 102C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\.bin\semver.ps1133440432041069911 0
@@ -3550,7 +3550,7 @@
 116C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\css-select\lib\general.js.map133440432017062531 0
 135C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\caniuse-lite\data\features\permissions-policy.js133440432036188666 0
 106C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\color-name\index.js133440432006496601 0
-86C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\js\config.js133441897134254393 0
+86C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\js\config.js133451458345798676 0
 116C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\css-select\lib\index.d.ts.map133440432017330729 0
 110C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\css-select\lib\index.js133440432012889249 0
 118C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\css-select\lib\pseudo-selectors133440432020713416 1
@@ -4804,7 +4804,7 @@
 122C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\@parcel\utils\src\parseCSSImport.js133440432018279535 0
 112C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\@parcel\utils\src\path.js133440432018359623 0
 126C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\@parcel\utils\src\relativeBundlePath.js133440432018952456 0
-105C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\dist\favicon-32x32.654148d5.png133443608438451852 0
+105C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\dist\favicon-32x32.654148d5.png133451457435709517 0
 132C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\@parcel\runtime-js\lib\helpers\cacheLoader.js133440432010311185 0
 121C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\@parcel\utils\src\shared-buffer.js133440432019358713 0
 117C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\@parcel\utils\src\sourcemap.js133440432019485512 0
@@ -5252,6 +5252,7 @@
 157C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\@parcel\optimizer-svgo\node_modules\css-tree\lib\syntax\scope\index.js133440432019530464 0
 157C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\@parcel\optimizer-svgo\node_modules\css-tree\lib\syntax\scope\value.js133440432023187658 0
 156C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\@parcel\optimizer-svgo\node_modules\css-tree\lib\syntax\pseudo\common133440432022307760 1
+114C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\dist\favicon-32x32.654148d5.png.45388.5t133443644577436998 0
 156C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\@parcel\optimizer-svgo\node_modules\css-tree\lib\syntax\pseudo\dir.js133440432017170050 0
 158C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\@parcel\optimizer-svgo\node_modules\css-tree\lib\syntax\pseudo\index.js133440432019463829 0
 157C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\@parcel\optimizer-svgo\node_modules\css-tree\lib\syntax\pseudo\lang.js133440432019765846 0
@@ -5322,10 +5323,10 @@
 143C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\@parcel\optimizer-svgo\node_modules\css-select\README.md133440432014998023 0
 157C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\@parcel\optimizer-svgo\node_modules\css-select\lib\attributes.d.ts.map133440432012969884 0
 151C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\@parcel\optimizer-svgo\node_modules\css-select\lib\attributes.js133440432008110001 0
-96C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\dist\index.850bd9e5.js133443609959778270 0
+96C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\dist\index.850bd9e5.js133451458347194627 0
 164C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\@parcel\optimizer-htmlnano\node_modules\svgo\plugins\moveGroupAttrsToElems.js133440432016080054 0
 150C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\@parcel\optimizer-svgo\node_modules\css-select\lib\compile.d.ts133440432015375095 0
-100C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\dist\index.850bd9e5.js.map133443609960028306 0
+100C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\dist\index.850bd9e5.js.map133451458347235680 0
 154C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\@parcel\optimizer-svgo\node_modules\css-select\lib\compile.d.ts.map133440432013175503 0
 148C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\@parcel\optimizer-svgo\node_modules\css-select\lib\compile.js133440432008936208 0
 154C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\@parcel\optimizer-svgo\node_modules\css-select\lib\general.d.ts.map133440432013558325 0
@@ -5862,18 +5863,18 @@
 129C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\.bin\node-gyp-build-optional-packages-test133440432041180053 0
 133C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\.bin\node-gyp-build-optional-packages-test.ps1133440432041180053 0
 102C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\node_modules\.bin\parcel.ps1133440432041053035 0
-90C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\js\controller.js133443609959330363 0
-85C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\js\model.js133443609670034313 0
+90C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\js\controller.js133449817370095875 0
+85C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\js\model.js133449785558539520 0
 93C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\js\views\mapView.js133441797289252792 0
-96C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\js\views\resultView.js133443042666329875 0
-96C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\js\views\searchView.js133441800840668141 0
-90C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\js\views\View.js133441893977304424 0
+96C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\js\views\resultView.js133447803643846997 0
+96C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\js\views\searchView.js133450825707551389 0
+90C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\js\views\View.js133449815418757680 0
 98C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\images\favicon-32x32.png133437964079471566 0
 98C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\images\icon-location.svg133437964080556248 0
 102C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\images\pattern-bg-mobile.png133437964082087703 0
-97C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\dist\index.0243a6ab.css133443608439214892 0
-101C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\dist\index.0243a6ab.css.map133443608439440387 0
+97C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\dist\index.0243a6ab.css133451457433669181 0
+101C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\dist\index.0243a6ab.css.map133451457433986037 0
 108C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\dist\index.850bd9e5.js.map.40104.c133441788862623432 0
-89C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\dist\index.html133443042881718166 0
+89C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\dist\index.html133451457447177438 0
 98C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\design\active-states.jpg133437964077713532 0
 100C:\Users\natalia.veras.campos\Desktop\Education\ip-address-tracker-master\design\desktop-preview.jpg133437964078654376 0
