@@ -776,58 +776,56 @@ var _viewJsDefault = parcelHelpers.interopDefault(_viewJs);
 var _ = require("../helpers.js/");
 class SearchView extends (0, _viewJsDefault.default) {
     _parentElement = document.querySelector(".search");
-    _isFormValid = false;
-    _getQuery() {
-        return this._parentElement.querySelector(".search-input").value;
-    }
-    _clearForm() {
-        const form = this._parentElement.querySelector(`.search-form`);
-        form.querySelectorAll("input").forEach((input)=>input.value = "");
-    }
-    _validateForm(formEl) {
-        const form = new FormData(formEl).entries();
-        this._isFormValid = [
-            ...form
-        ].map(([key, value])=>{
-            if (this.VALIDATE_FORM_MAP[key].validation(value)) {
-                this._clearFieldError(key);
-                return true;
-            } else {
-                const errMsg = this.VALIDATE_FORM_MAP[key].message;
-                this._showFieldError(key, errMsg);
-            }
-        }).every((valid)=>valid);
-    }
-    _showFieldError(key, errMsg) {
-        const field = this._parentElement.querySelector(`input[name="${key}"]`);
-        const form = this._parentElement.querySelector(`.search-form`);
-        if (!form.querySelector(`.error-${key}`)) field.insertAdjacentHTML("afterEnd", `<span class="error-${key}">${errMsg}</span>`);
-    }
-    _clearFieldError(key) {
-        const form = this._parentElement.querySelector(`.search-form`);
-        const error = this._parentElement.querySelector(`.error-${key}`);
-        console.log(error);
-        if (error) form.removeChild(error);
-        else return;
-    }
-    VALIDATE_FORM_MAP = {
+    _form = this._parentElement.querySelector(".search-form");
+    _formEntries = [
+        ...new FormData(this._form).entries()
+    ];
+    VALIDATE_INPUT_MAP = {
         ip: {
-            validation: (value)=>(0, _.IPv4Regex).test(value) || (0, _.IPv6Regex).test(value),
+            isValid: (value)=>(0, _.IPv4Regex).test(value) || (0, _.IPv6Regex).test(value),
             message: "Invalid IP address"
-        },
-        nubi: {
-            validation: (value)=>value !== "nubi" && value !== "",
-            message: "Nubi"
         }
     };
+    get _query() {
+        return this._parentElement.querySelector(".search-input").value;
+    }
+    _isFormValid() {
+        return [
+            ...new FormData(this._form).entries()
+        ].map(([key, value])=>this.VALIDATE_INPUT_MAP[key].isValid(value)).every((valid)=>valid);
+    }
+    _showErrors() {
+        this._formEntries.map(([key, _])=>this._addError(key));
+    }
+    _addError(key) {
+        const inputField = this._parentElement.querySelector(`input[name="${key}"]`);
+        if (!this._form.querySelector(`.error-${key}`)) {
+            const errMsg = this.VALIDATE_INPUT_MAP[key].message;
+            inputField.insertAdjacentHTML("afterEnd", `<span class="error-${key}">${errMsg}</span>`);
+        }
+    }
+    _removeErrors() {
+        this._formEntries.forEach(([key, _])=>{
+            const error = this._form.querySelector(`.error-${key}`);
+            error && this._form.removeChild(error);
+        });
+    }
+    _clearInputs() {
+        [
+            ...this._form.querySelectorAll("input")
+        ].map((input)=>input.value = "");
+    }
+    _resetForm() {
+        this._removeErrors();
+        this._clearInputs();
+    }
     addHandlerSearch(handler) {
         this._parentElement.addEventListener("submit", (e)=>{
             e.preventDefault();
-            this._validateForm(e.target);
-            if (this._isFormValid) {
-                this._clearForm();
-                handler(this._getQuery());
-            }
+            if (this._isFormValid()) {
+                handler(this._query);
+                this._resetForm();
+            } else this._showErrors();
         });
     }
 }
