@@ -8,7 +8,7 @@ export const getResult = async function (searchIp) {
   try {
     if (state.searchedIp.ip === searchIp) return state.searchedIp;
 
-    // If the parameter is not specified, then it defaults to client request's public IP address.
+    // If the parameter is not specified, then it defaults to client request's public IP address
     const res = await fetch(
       `${API}/country,city?apiKey=${API_KEY}&ipAddress=${searchIp}`
     );
@@ -35,7 +35,6 @@ export const getResult = async function (searchIp) {
       timezone: ip.location.timezone,
     };
     state.searchedIp = mappedIp;
-    console.log(state);
     return mappedIp;
   } catch (err) {
     throw err;
@@ -43,8 +42,7 @@ export const getResult = async function (searchIp) {
 };
 
 const getFullLocation = function (location) {
-  const values = Object.values(location).filter((val) => val);
-  const fullLocation = values.length ? values.join(", ") : null;
+  const fullLocation = Object.values(location).filter(Boolean).join(", ");
   return fullLocation;
 };
 

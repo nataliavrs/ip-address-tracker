@@ -7,6 +7,12 @@ export default class View {
     this._parentElement.innerHTML = markup;
   }
 
+  renderError(error) {
+    this._data = error;
+    const errorMarkup = this._generateErrorMarkup();
+    this._parentElement.innerHTML = errorMarkup;
+  }
+
   updateSimple(data) {
     this._data = data;
     const newMarkup = this._generateMarkup();

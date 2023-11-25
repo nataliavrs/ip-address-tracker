@@ -15,7 +15,7 @@ const controlSearchResults = async function (searchQuery) {
     const res = await getResult(searchQuery);
     resultView.render(res);
   } catch (err) {
-    alert(err);
+    resultView.renderError(err.message);
   }
 };
 

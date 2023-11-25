@@ -591,7 +591,7 @@ const controlSearchResults = async function(searchQuery) {
         const res = await (0, _modelJs.getResult)(searchQuery);
         (0, _resultViewJsDefault.default).render(res);
     } catch (err) {
-        alert(err);
+        (0, _resultViewJsDefault.default).renderError(err.message);
     }
 };
 const init = function() {
@@ -612,7 +612,7 @@ const state = {
 const getResult = async function(searchIp) {
     try {
         if (state.searchedIp.ip === searchIp) return state.searchedIp;
-        // If the parameter is not specified, then it defaults to client request's public IP address.
+        // If the parameter is not specified, then it defaults to client request's public IP address
         const res = await fetch(`${(0, _configJs.API)}/country,city?apiKey=${(0, _configJs.API_KEY)}&ipAddress=${searchIp}`);
         if (!res.ok) {
             if (res.status === 422) {
@@ -633,15 +633,13 @@ const getResult = async function(searchIp) {
             timezone: ip.location.timezone
         };
         state.searchedIp = mappedIp;
-        console.log(state);
         return mappedIp;
     } catch (err) {
         throw err;
     }
 };
 const getFullLocation = function(location) {
-    const values = Object.values(location).filter((val)=>val);
-    const fullLocation = values.length ? values.join(", ") : null;
+    const fullLocation = Object.values(location).filter(Boolean).join(", ");
     return fullLocation;
 };
 const getFullLocationv2 = function(location) {
@@ -731,6 +729,14 @@ class ResultView extends (0, _viewJsDefault.default) {
         </div>
     `;
     }
+    _generateErrorMarkup() {
+        return `
+      <div class="error">
+        <span class="error-message">
+          Oops! It seems there's an issue searching for the IP: ${this._data}
+        </span>
+      </div>`;
+    }
 }
 exports.default = new ResultView();
 
@@ -743,6 +749,11 @@ class View {
         this._data = data;
         const markup = this._generateMarkup();
         this._parentElement.innerHTML = markup;
+    }
+    renderError(error) {
+        this._data = error;
+        const errorMarkup = this._generateErrorMarkup();
+        this._parentElement.innerHTML = errorMarkup;
     }
     updateSimple(data) {
         this._data = data;

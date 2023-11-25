@@ -23,6 +23,15 @@ class ResultView extends View {
         </div>
     `;
   }
+
+  _generateErrorMarkup() {
+    return `
+      <div class="error">
+        <span class="error-message">
+          Oops! It seems there's an issue searching for the IP: ${this._data}
+        </span>
+      </div>`;
+  }
 }
 
 export default new ResultView();
