@@ -1,4 +1,4 @@
-import { getResult } from "./model.js";
+import { state, getResult } from "./model.js";
 import resultView from "./views/resultView.js";
 import searchView from "./views/searchView.js";
 import L from "leaflet";
@@ -21,8 +21,9 @@ const controlSearchResults = async function (searchQuery) {
 };
 
 const initMap = async function () {
+  const { lat, lng } = state.searchedIp;
   const map = L.map("map", {
-    center: [51.505, -0.09], // Initial map center
+    center: [45.46427, 9.18951], // Initial map center
     zoom: 10, // Initial zoom level
     zoomControl: false, // Disable the zoom control
     scrollWheelZoom: false,
@@ -36,6 +37,7 @@ const initMap = async function () {
 };
 
 const init = function () {
+  // controlPageLoad();
   searchView.addHandlerSearch(controlSearchResults);
 };
 

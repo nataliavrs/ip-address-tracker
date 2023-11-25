@@ -32,6 +32,8 @@ export const getResult = async function (searchIp) {
         country: ip.location.country,
         postalcode: ip.location.postalcode,
       }),
+      lat: ip.location.lat,
+      lng: ip.location.lng,
       timezone: ip.location.timezone,
     };
     state.searchedIp = mappedIp;
