@@ -13,6 +13,11 @@ export default class View {
     this._parentElement.innerHTML = errorMarkup;
   }
 
+  loadSpinner() {
+    const spinner = `<div class="spinner"></div>`;
+    this._parentElement.innerHTML = spinner;
+  }
+
   updateSimple(data) {
     this._data = data;
     const newMarkup = this._generateMarkup();
@@ -36,10 +41,5 @@ export default class View {
         oldNode.textContent = newNode.textContent;
       }
     });
-  }
-
-  loadSpinner() {
-    const spinner = `<div class="spinner"></div>`;
-    this._parentElement.innerHTML = spinner;
   }
 }
