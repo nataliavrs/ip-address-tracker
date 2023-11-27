@@ -1,6 +1,6 @@
 import View from "./View.js";
 import { ZOOM_LEVEL } from "../config.js";
-import L from "leaflet";
+import L, { tileLayer } from "leaflet";
 import customPinImage from "../../images/icon-location.svg";
 class MapView extends View {
   _parentElement = document.querySelector("#map");
@@ -16,7 +16,7 @@ class MapView extends View {
 
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         maxZoom: ZOOM_LEVEL,
-      });
+      }).addTo(this._map);
 
       const icon = L.icon({
         iconUrl: customPinImage,
