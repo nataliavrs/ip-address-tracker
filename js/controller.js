@@ -19,7 +19,8 @@ const controlSearchResults = async function (searchQuery) {
     resultView.loadSpinner();
     const res = await getResult(searchQuery);
     resultView.render(res);
-    mapView.updateMap({ lat: res.lat, lng: res.lng });
+    const { lat, lng } = res;
+    mapView.updateMap(lat, lng);
   } catch (err) {
     resultView.renderError(err.message);
   }

@@ -8,7 +8,6 @@ export const getResult = async function (searchIp) {
   try {
     if (state.searchedIp.ip === searchIp) return state.searchedIp;
 
-    /*
     // If the parameter is not specified, then it defaults to client request's public IP address
     const res = await fetch(
       `${API}/country,city?apiKey=${API_KEY}&ipAddress=${searchIp}`
@@ -24,19 +23,18 @@ export const getResult = async function (searchIp) {
     }
 
     const ip = await res.json();
-    */
     const mappedIp = {
-      ip: "177.66.34.22",
-      isp: "Starlink X",
+      ip: ip.ip,
+      isp: ip.isp,
       fullLocation: getFullLocation({
-        city: "Milano",
-        region: "Lombardia",
-        country: "IT",
-        postalcode: "73037",
+        city: ip.location.city,
+        region: ip.location.region,
+        country: ip.location.country,
+        postalcode: ip.location.postalcode,
       }),
-      lat: "45.4642",
-      lng: "9.1900",
-      timezone: "1",
+      timezone: ip.location.timezone,
+      lat: ip.location.lat,
+      lng: ip.location.lng,
     };
     state.searchedIp = mappedIp;
     return mappedIp;
