@@ -70,15 +70,16 @@ body {
 }
 
 .search-btn {
-  background-image: url(../images/icon-arrow.svg);
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="11" height="14"><path fill="none" stroke="%23FFF" stroke-width="3" d="M2%201l6%206-6%206"/></svg>');
   background-size: 10px 12px;
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 0 0.7rem 0.7rem 0;
   padding: 1.4rem;
-  border: #ffff;
+  border: none;
   background-color: #000;
   color: #ffff;
+  cursor: pointer;
 }
 
 .result-container {
