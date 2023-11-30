@@ -9,11 +9,6 @@ An IP Address Tracker application that utilizes JavaScript, CSS, and HTML. The a
 - **Map Zoom:** The map automatically zooms in on the specified IP address location.
 - **Detailed Information:** Provides additional information about the IP address, such as location details and ISP.
 
-## Installation
-
-1. Clone the repository: `git clone https://github.com/your-username/ip-address-tracker.git`
-2. Open the `index.html` file in your preferred web browser.
-
 ## Usage
 
 1. Open the application in a web browser.
